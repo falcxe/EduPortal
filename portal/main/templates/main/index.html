@@ -1,0 +1,26 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Edu Portal{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="main-content">
+            <h1>Рекомендуемые курсы <i class="fa-solid fa-arrow-down" style="font-size: 0.75em;"></i></h1>
+            <div class="course-cards">
+                {% for course in page_obj %}
+                    <div class="course-card">
+                    {% if course.image %}
+                        <img src="{{ course.image.url }}" alt="Course Image">
+                    {% else %}
+                        <img src="{% static 'main/img/default_course_image.jpg' %}" alt="Default Course Image">
+                    {% endif %}
+                    <h3>{{ course.name }}</h3>
+                    <p>{{ course.description }}</p>
+                    <a href="{% url 'course-detail' course.id %}" class="btn btn-dark">Подробнее</a>
+    </div>
+    {% endfor %}
+</div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Подать заявку на преподавание{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2><strong>Подать заявку на преподавание</strong></h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Подать заявку</button>
+    </form>
+</div>
+{% endblock %}

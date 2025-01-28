@@ -1,0 +1,8 @@
+portal/.vscode
+portal/.idea
+.venv
+idea
+portal/portal/__pycache__
+portal/main/__pycache__
+portal/users/__pycache__
+db.sqlite3

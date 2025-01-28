@@ -1,0 +1,45 @@
+<!-- filepath: /c:/Users/mxms1/PythonProjects/Edu_Portal/portal/courses/templates/courses/create.html -->
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}{% if course %}Редактировать курс{% else %}Создать курс{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="form-container_create">
+        <div class="creating-form">
+            <h2><strong>{% if course %}Редактировать курс{% else %}Добавление курса{% endif %}</strong></h2>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <li>{{ field.label }}: {{ field.errors }}</li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if form.non_field_errors %}
+                            <li>{{ form.non_field_errors }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="id_materials">Материалы курса</label>
+                    <input type="file" name="materials" multiple id="id_materials" class="form-control" required>
+                </div>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-{% if course %}save{% else %}plus{% endif %}"></i>
+                    {% if course %}Сохранить изменения{% else %}Добавить{% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

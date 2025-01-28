@@ -1,0 +1,99 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Каталог курсов{% endblock %}
+
+{% block content %}
+    <main>
+        {% if user.is_teacher or user.is_staff %}
+            <a href="{% url 'create' %}" class="btn btn-dark add" id="add_course"><i class="fa-solid fa-plus"></i> Добавить курс</a>
+        {% endif %}
+        <div class="catalog-div">
+            <aside class="filter-container">
+                <h3>Фильтры</h3>
+                <form method="get" action="{% url 'catalog' %}">
+                    <div class="form-group">
+                        <label for="grade">Класс</label>
+                        <select id="grade" name="grade" class="form-control">
+                            <option value="">Не указано</option>
+                            <option value="1" {% if selected_grade == "1" %}selected{% endif %}>1</option>
+                            <option value="2" {% if selected_grade == "2" %}selected{% endif %}>2</option>
+                            <option value="3" {% if selected_grade == "3" %}selected{% endif %}>3</option>
+                            <option value="4" {% if selected_grade == "4" %}selected{% endif %}>4</option>
+                            <option value="5" {% if selected_grade == "5" %}selected{% endif %}>5</option>
+                            <option value="6" {% if selected_grade == "6" %}selected{% endif %}>6</option>
+                            <option value="7" {% if selected_grade == "7" %}selected{% endif %}>7</option>
+                            <option value="8" {% if selected_grade == "8" %}selected{% endif %}>8</option>
+                            <option value="9" {% if selected_grade == "9" %}selected{% endif %}>9</option>
+                            <option value="10" {% if selected_grade == "10" %}selected{% endif %}>10</option>
+                            <option value="11" {% if selected_grade == "11" %}selected{% endif %}>11</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Предмет</label>
+                        <select id="subject" name="subject" class="form-control">
+                            <option value="">Не указано</option>
+                            <option value="Алгебра" {% if selected_subject == "Алгебра" %}selected{% endif %}>Алгебра</option>
+                            <option value="Английский язык" {% if selected_subject == "Английский язык" %}selected{% endif %}>Английский язык</option>
+                            <option value="Биология" {% if selected_subject == "Биология" %}selected{% endif %}>Биология</option>
+                            <option value="География" {% if selected_subject == "География" %}selected{% endif %}>География</option>
+                            <option value="Геометрия" {% if selected_subject == "Геометрия" %}selected{% endif %}>Геометрия</option>
+                            <option value="Информатика" {% if selected_subject == "Информатика" %}selected{% endif %}>Информатика</option>
+                            <option value="История" {% if selected_subject == "История" %}selected{% endif %}>История</option>
+                            <option value="Литература" {% if selected_subject == "Литература" %}selected{% endif %}>Литература</option>
+                            <option value="Математика" {% if selected_subject == "Математика" %}selected{% endif %}>Математика</option>
+                            <option value="Обществознание" {% if selected_subject == "Обществознание" %}selected{% endif %}>Обществознание</option>
+                            <option value="Русский язык" {% if selected_subject == "Русский язык" %}selected{% endif %}>Русский язык</option>
+                            <option value="Физика" {% if selected_subject == "Физика" %}selected{% endif %}>Физика</option>
+                            <option value="Химия" {% if selected_subject == "Химия" %}selected{% endif %}>Химия</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">Тэги</label>
+                        <input type="text" id="tags" name="tags" class="form-control" placeholder="Введите тэги через запятую" value="{{ selected_tags|default:"" }}">
+                    </div>
+                    <button type="submit" class="btn btn-dark">Применить</button>
+                </form>
+            </aside>
+            <div class="course-cards">
+                {% for course in page_obj %}
+                <div class="course-card">
+                    {% if course.image %}
+                    <img src="{{ course.image.url }}" alt="Course Image">
+                    {% else %}
+                    <img src="{% static 'main/img/default_course_image.jpg' %}" alt="Default Course Image">
+                    {% endif %}
+                    <h3>{{ course.name }}</h3>
+                    <a href="{% url 'course-detail' course.id %}" class="btn btn-dark">Подробнее</a>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-dark rounded">&laquo;</a>
+                    {% endif %}
+
+                    <span class="page-numbers">
+                        {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                        <span class="current btn btn-dark rounded">{{ num }}</span>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a href="?page={{ num }}" class="btn btn-dark rounded">{{ num }}</a>
+                        {% endif %}
+                        {% endfor %}
+                    </span>
+
+                    {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+                    <span>...</span>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-dark rounded">{{ page_obj.paginator.num_pages }}</a>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-dark rounded">&raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+    </main>
+{% endblock %}

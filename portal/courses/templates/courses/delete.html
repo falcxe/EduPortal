@@ -1,0 +1,16 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Удалить курс{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h2><strong>Удалить курс</strong></h2>
+        <p>Вы уверены, что хотите удалить курс "{{ course.name }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning" style="margin-bottom: 20px;">Удалить</button>
+            <a href="{% url 'course-detail' course.id %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+{% endblock %}

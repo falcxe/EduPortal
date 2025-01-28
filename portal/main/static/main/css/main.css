@@ -1,0 +1,660 @@
+body {
+    font-family: 'JetBrains Mono', monospace !important;
+    background: #f4f4f4 radial-gradient(circle, #ccc 1px, transparent 1px);
+    background-size: 30px 32px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 70px;
+    width: 90%;
+    position: relative;
+    background-color: #333;
+    margin: 10px auto;
+    padding: 0 1%;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 1.9em;
+    margin: 10px;
+    text-decoration: none;
+    color: #bbc4c8;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.logo span {
+    margin-left: 10px;
+}
+
+header a {
+    font-size: large;
+    color: #fff;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: none;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header a.catalog {
+    font-size: large;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+header a.catalog i {
+    margin-right: 5px;
+}
+
+header a.catalog:hover {
+    background-color: #555;
+}
+
+header .header-buttons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+header a {
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+main {
+    width: 90%;
+    min-height: 85vh;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+    text-align: center;
+
+}
+
+.main-content {
+    margin-left: 200px;
+    margin-bottom: 50px;
+    font-size: 2.3em;
+    color: #333;
+    text-align: left;
+}
+
+.form-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.form-container button {
+    font-family: 'JetBrains Mono', monospace !important;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.form-container button i {
+    margin-right: 5px;
+}
+
+.form-container button:hover {
+    background-color: #555;
+}
+
+.form-container p {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.form-container p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-container p a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.profile-container {
+    width: 33%;
+    margin: 5px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.profile-details .btn-dark {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.profile-details .btn-dark:hover {
+    background-color: #555;
+}
+
+.profile-details {
+    margin-top: 20px;
+}
+
+.profile-details h2 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.profile-details p {
+    font-size: 1em;
+    color: #333;
+}
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-error, .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.profile-details .btn-dark, .profile-details .btn-danger {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.profile-details .btn-danger {
+    background-color: #dc3545;
+}
+
+.catalog-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.filter-container {
+    width: 20%;
+    height: 50%;
+    margin-right: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.form-container_create {
+    width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.course-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: -65px;
+    width: 75%;
+}
+
+.course-card {
+    width: 30%;
+    margin: 10px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    max-height: 180px;
+}
+
+.creating-form label {
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+
+}
+
+.creating-form .form-control {
+    margin-bottom: 15px;
+}
+
+.course-card h3 {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.course-card p {
+    font-size: 1em;
+    color: #666;
+    flex-grow: 1;
+}
+
+.course-card button {
+    font-family: 'JetBrains Mono', monospace !important;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.course-card button:hover {
+    background-color: #555;
+}
+
+.back-to-home {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-home i {
+    margin-right: 5px;
+}
+
+.back-to-home:hover {
+    background-color: #555;
+}
+
+.add {
+    height: 40px;
+    width: 200px;
+    position: relative;
+    right: 43%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.creating-form input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.creating-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+#add_course {
+    margin: 0px auto;
+}
+
+.creating-form button {
+    width: 80%; /* Кнопка тоже занимает всю ширину */ /* Ограничиваем максимальную ширину */
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.creating-form button:hover {
+    background-color: #555;
+}
+
+
+.course-image-container {
+    min-width: 200px;
+    max-width: 600px;
+    margin-left: 325px;
+}
+
+.course-image-container img {
+    width: 120%;
+    height: auto; /* Автоматически подстраиваем высоту изображения */
+    border-radius: 10px; /* Скругляем углы изображения */
+}
+.course-info-container {
+    padding: 20px;
+    margin-top: -23%;
+    width: 20%;
+    background-color: rgba(255, 255, 255, 0.397);
+    border-radius: 10px;
+    text-align: left;
+}
+
+.course-info-container h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.course-info-container p {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.admin-buttons {
+    margin-top: 20px;
+}
+
+.admin-buttons .btn {
+    margin-right: 10px;
+}
+
+.course-text-container {
+    margin-top: 250px !important;
+    margin-right: auto;
+    margin-left: 300px;
+    max-width: 1000px;
+    padding: 20px;
+    background-color: rgba(184, 214, 243, 0);
+    border-radius: 10px;
+}
+
+.course-text-container h2 {
+    font-size: 1.8em;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+}
+
+.course-text-container p {
+    font-size: 1.1em;
+    color:  #424242;
+    line-height: 1.6;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .step-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 0; /* Убираем промежуток между элементами */
+}
+
+.pagination .step-links a,
+.pagination .step-links span {
+    padding: 5px 10px; /* Уменьшаем размер отступов */
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px; /* Уменьшаем радиус закругления */
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 1px solid #333; /* Добавляем границу */
+    margin: 0 2px; /* Добавляем небольшой отступ между элементами */
+    display: flex;
+    align-items: center; /* Выравниваем стрелки по вертикали */
+    justify-content: center; /* Выравниваем стрелки по горизонтали */
+}
+
+.pagination .step-links a:first-child,
+.pagination .step-links span:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination .step-links a:last-child,
+.pagination .step-links span:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pagination .step-links a:hover {
+    background-color: #555;
+}
+
+.pagination .step-links .current {
+    background-color: #555;
+    font-weight: bold;
+}
+
+.pagination .page-numbers {
+    display: flex;
+    gap: 0; /* Убираем промежуток между элементами */
+    margin: 0 10px; /* Добавляем отступы слева и справа */
+}
+
+
+.course-materials {
+    width: 40%;
+    height: 300px;
+    margin: 50px 5px;
+    margin-left: 800px;
+    padding: 10px;
+    background-color: rgba(184, 243, 230, 0.397);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.course-materials h2{
+    text-align: left;
+    margin: 10px;
+}
+
+.course-materials p{
+    text-align: left;
+    margin: 20px 10px;
+}
+
+.course-materials .btn-dark {
+    margin-top: 10px;
+    display: inline-block;
+    position: relative;
+    margin-left: -500px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.course-materials .btn-dark:hover {
+    background-color: #555;
+}
+
+.rating-container {
+    width: 40%;
+    text-align: left;
+    margin-top: -350px;
+    margin-left: 100px;
+    height: 300px;
+    padding: 30px;
+    background-color: rgba(184, 243, 230, 0.397);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.rating-container h2{
+    margin-bottom: 20px;
+}
+
+.comments-container {
+    text-align: left;
+}
+
+.comments-container form {
+    display: block;
+    margin-top: 20px;
+    width: 900PX;
+}
+.add-comment {
+    margin: 20px 20px;
+    width: 40%;
+}
+.comment{
+    width: 900px;
+    height: auto;
+    margin: 20px 20px;
+    padding: 15px;
+    background-color: rgba(184, 243, 230, 0.397);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.reply {
+    background-color: rgb(255, 255, 255);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.reply-button {
+    color: #666;
+    text-decoration: none;
+    margin: 5px 0;
+    display: inline-block;
+}
+
+.reply-form {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+.social-auth {
+    margin-top: 20px;
+}
+.social-auth p {
+    text-align: left;
+}
+.social-auth a {
+    text-align: center;
+    padding: 8  px;
+    width: 150px;
+}

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Edu Portal{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
+</head>
+<body>
+    <header>
+        <a href='{% url "index" %}'>
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Edu Portal</span>
+        </div>
+        </a>
+        <nav>
+            <a class='catalog' href="{% url 'catalog' %}">
+                <i class="fa-solid fa-book"></i> Каталог
+            </a>
+            {% if user.is_authenticated and not user.is_teacher and not user.is_staff %}
+                <a href="{% url 'apply_for_teacher' %}" class="catalog">
+                    <i class="fa-solid fa-handshake"></i>Преподавание
+                </a>
+            {%elif user.is_staff or user.is_teacher %}
+                <a href="#" class="catalog">
+                    <i class="fa-solid fa-handshake"></i>Преподавание
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" class="catalog">
+                    <i class="fa-solid fa-handshake"></i>Преподавание
+                </a>
+            {% endif %}
+        </nav>
+        <div class="header-buttons">
+            {% if user.is_authenticated %}
+    <a href="{% url 'profile' %}" class="btn btn-primary">
+        <i class="fas fa-user-circle"></i> {{ user.username }}
+    </a>
+{% else %}
+    <a href="{% url 'login' %}" class="btn btn-light">
+        <i class="fas fa-sign-in-alt"></i> Войти
+    </a>
+    <a href="{% url 'registration' %}" class="btn btn-secondary">
+        <i class="fas fa-user-plus"></i> Регистрация
+    </a>
+{% endif %}
+
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

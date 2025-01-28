@@ -1,0 +1,209 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}{{ course.name }}{% endblock %}
+
+{% block content %}
+<main>
+    <div class="course-info-wrapper">
+        <div class="course-image-container">
+            {% if course.image %}
+                <img src="{{ course.image.url }}" alt="Course Image">
+            {% else %}
+                <img src="{% static 'main/img/default_course_image.jpg' %}" alt="Default Course Image">
+            {% endif %}
+        </div>
+        <div class="course-info-container">
+            <p><strong>Класс:</strong> {{ course.grade }}</p>
+            <p><strong>Предмет:</strong> {{ course.subject }}</p>
+            <p><strong>Автор:</strong> {{ course.author }}</p>
+            <p><strong>Создан:</strong> {{ course.created_at|date:"d.m.Y" }}</p>
+            {% if user.is_staff or user == course.author %}
+                <div class="admin-buttons">
+                    <a href="{% url 'course-edit' course.id %}" class="btn btn-primary">Редактировать</a>
+                    <a href="{% url 'course-delete' course.id %}" class="btn btn-danger">Удалить</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <article class="course-text-container" style="text-align: justify; margin-top:50px;">
+        <h1><strong>{{course.name}}</strong></h1>
+        <br></br>
+        <h2>{{ course.description }}</h2>
+        <p>{{ course.full_text|linebreaks }}</p>
+    </article>
+    {% if course.materials.exists %}
+        <div class="course-materials-rating-container">
+            <div class="course-materials">
+                <h2>Материалы по теме</h2>
+                {% for material in course.materials.all %}
+                    <p>{{ material.file.name|slice:"17:" }}</p>
+                {% endfor %}
+                <a href="{% url 'download-all-materials' course.id %}" class="btn btn-dark">Скачать</a>
+            </div>
+            <div class="rating-container">
+                <h2>Средний рейтинг: {{ course.average_rating }}</h2>
+                <p>Количество оценок: {{ course.rating_count }}</p>
+            </div>
+        </div>
+    {% endif %}
+    <div class="comments-container" style="margin:50px 300px;">
+        <h2>Комментарии</h2>
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="comment" id="comment-{{ comment.id }}">
+                    <div class="comment-header">
+                        <p><i class="fas fa-user-circle"></i> <strong>{{ comment.user.username }}</strong></p>
+                        {% if user.is_staff or user == course.author %}
+                            <a href="{% url 'delete-comment' comment.id %}" class="delete-comment">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="comment-content">
+                        <p>{{ comment.text }}</p>
+                        {% if comment.rating %}
+                            <p class="rating">Оценка: {{ comment.rating }}/5</p>
+                        {% endif %}
+                        <small>{{ comment.created_at|date:"d.m.Y H:i" }}</small>
+                    </div>
+                    {% if user.is_authenticated %}
+                        <button class="btn btn-link reply-button" data-comment="{{ comment.id }}">
+                            Ответить
+                        </button>
+                        <div class="reply-form" id="reply-form-{{ comment.id }}" style="display: none;">
+                            <form method="POST" action="{% url 'add-reply' comment.id %} " class="form-reply">
+                                {% csrf_token %}
+                                <textarea name="text" class="form-control" rows="3" placeholder="Ваш ответ"></textarea>
+                                <button type="submit" class="btn btn-primary mt-2">Отправить</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                    {% for reply in comment.replies.all %}
+                        <div class="reply" style="margin-left: 40px;">
+                            <div class="comment-header">
+                                <p><i class="fas fa-user-circle"></i> <strong>{{ reply.user.username }}</strong></p>
+                                {% if user.is_staff or user == course.author %}
+                                    <a href="{% url 'delete-comment' reply.id %}" class="delete-comment">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <p>{{ reply.text }}</p>
+                            <small>{{ reply.created_at|date:"d.m.Y H:i" }}</small>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-comments">Оставьте первый комментарий</p>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <div class="comment-form-container">
+                <h3>Оставить комментарий</h3>
+                <form method="POST" class="comment-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        {% else %}
+            <p>Пожалуйста, <a href="{% url 'login' %}">войдите</a>, чтобы оставить комментарий.</p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.delete-comment').forEach(link => {
+        link.addEventListener('click', async function(e) {
+            e.preventDefault();
+            try {
+                const response = await fetch(this.href, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    },
+                });
+                if (response.ok) {
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+            }
+        });
+    });
+
+
+    document.querySelectorAll('.reply-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const commentId = button.dataset.comment;
+            const replyForm = document.getElementById(`reply-form-${commentId}`);
+            replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+});
+</script>
+
+<style>
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+.comment {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(184, 243, 230, 0.397);
+    animation-fill-mode: forwards;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.delete-comment {
+    color: #dc3545;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.delete-comment:hover {
+    color: #c82333;
+}
+
+.reply {
+    background-color: rgb(255, 255, 255);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.reply-form {
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.no-comments {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin: 20px 0;
+}
+
+.reply-form textarea {
+    width: 850px;
+}
+</style>
+{% endblock %}
