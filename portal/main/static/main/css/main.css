@@ -98,6 +98,7 @@ main {
 
 .main-content {
     margin-left: 200px;
+    margin-top: 80px;
     margin-bottom: 50px;
     font-size: 2.3em;
     color: #333;
@@ -657,4 +658,37 @@ main {
     text-align: center;
     padding: 8  px;
     width: 150px;
+}
+
+
+.course-cards-index{
+    display: flex;
+    justify-content: flex-start;
+    width: 75%;
+    margin: 20px -100px;
+    margin-bottom: 120px;
+}
+
+.course-card-index{
+    width: 30%;
+    margin: 10px 25px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-card-index img{
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.hero-image img {
+    border-radius: 15px;
+    height: 300px;
+    width: 90%;
 }
