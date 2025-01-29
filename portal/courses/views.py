@@ -1,4 +1,5 @@
-from .models import Course, CourseMaterial, Comment
+from django.db import models  # Добавьте этот импорт
+from .models import Course, CourseMaterial, Comment, Test, Question, Answer
 from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
@@ -42,39 +43,59 @@ class CourseDetailView(DetailView):
 
 @login_required
 def create(request):
-    error = ''
     if request.method == 'POST':
-        form = CourseForm(request.POST, request.FILES)  # Добавляем request.FILES
-        materials_form = CourseMaterialForm(request.POST, request.FILES)  # Добавляем форму для материалов
-
+        form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
-            try:
-                course = form.save(commit=False)
-                course.author = request.user
-                course.save()
+            course = form.save(commit=False)
+            course.author = request.user
+            course.save()
 
-                # Обработка загруженных файлов
-                files = request.FILES.getlist('materials')  # Получаем список файлов
-                for file in files:
-                    CourseMaterial.objects.create(course=course, file=file)
+            # Обработка файлов материалов
+            files = request.FILES.getlist('materials')
+            for file in files:
+                CourseMaterial.objects.create(course=course, file=file)
 
-                return redirect('catalog')
-            except Exception as e:
-                error = f'Ошибка при сохранении курса: {str(e)}'
-        else:
-            error = 'Неверные данные формы'
+            # Обработка теста, если он был добавлен
+            if request.POST.get('has_test'):
+                test = Test.objects.create(
+                    course=course,
+                    title=request.POST.get('test_title')
+                )
+
+                # Обработка вопросов и ответов
+                questions_data = {}
+                for key, value in request.POST.items():
+                    if key.startswith('question_'):
+                        question_id = key.split('_')[1]
+                        if question_id not in questions_data:
+                            questions_data[question_id] = {'text': value, 'answers': []}
+
+                    elif key.startswith('answer_'):
+                        _, question_id, answer_id = key.split('_')
+                        correct = request.POST.get(f'correct_{question_id}') == answer_id
+                        questions_data[question_id]['answers'].append({
+                            'text': value,
+                            'is_correct': correct
+                        })
+
+                # Сохранение вопросов и ответов
+                for q_data in questions_data.values():
+                    question = Question.objects.create(
+                        test=test,
+                        text=q_data['text']
+                    )
+                    for a_data in q_data['answers']:
+                        Answer.objects.create(
+                            question=question,
+                            text=a_data['text'],
+                            is_correct=a_data['is_correct']
+                        )
+
+            return redirect('course-detail', pk=course.pk)  # Изменено с 'catalog' на 'course-detail'
     else:
         form = CourseForm()
-        materials_form = CourseMaterialForm()
 
-    context = {
-        'form': form,
-        'materials_form': materials_form,
-        'error': error
-    }
-
-    return render(request, 'courses/create.html', context)
-
+    return render(request, 'courses/create.html', {'form': form})
 
 
 def catalog(request):
@@ -210,3 +231,45 @@ def add_reply(request, pk):
             text=request.POST.get('text')
         )
         return redirect('course-detail', pk=parent_comment.course.pk)
+
+@login_required
+def create_test(request, course_id):
+    if request.method == 'POST':
+        test = Test.objects.create(
+            course_id=course_id,
+            title=request.POST.get('test_title')
+        )
+
+        # Обработка вопросов и ответов
+        questions_data = {}
+        for key, value in request.POST.items():
+            if key.startswith('question_'):
+                question_id = key.split('_')[1]
+                if question_id not in questions_data:
+                    questions_data[question_id] = {'text': value, 'answers': []}
+
+            elif key.startswith('answer_'):
+                parts = key.split('_')
+                if len(parts) == 3:
+                    _, question_id, answer_id = parts
+                    correct = request.POST.get(f'correct_answer_{question_id}') == answer_id
+                    questions_data[question_id]['answers'].append({
+                        'text': value,
+                        'is_correct': correct
+                    })
+
+        # Сохранение вопросов и ответов
+        for q_data in questions_data.values():
+            question = Question.objects.create(
+                test=test,
+                text=q_data['text']
+            )
+            for a_data in q_data['answers']:
+                Answer.objects.create(
+                    question=question,
+                    text=a_data['text'],
+                    is_correct=a_data['is_correct']
+                )
+
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)

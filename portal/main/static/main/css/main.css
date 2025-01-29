@@ -126,6 +126,14 @@ main {
     text-align: left;
 }
 
+/* Добавляем стили для уменьшения размера чекбокса */
+.form-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    transform: scale(0.8); /* Уменьшаем размер чекбокса */
+    margin-right: 10px; /* Добавляем отступ справа */
+}
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
