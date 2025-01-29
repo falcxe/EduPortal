@@ -47,16 +47,6 @@
             </div>
         </div>
     {% endif %}
-    {% if course.tests.exists %}
-        <div class="test-section">
-            <h3>Тест по курсу</h3>
-            {% for test in course.tests.all %}
-                <a href="{% url 'test-detail' pk=test.pk %}" class="btn btn-primary test-button">
-                    Пройти тест: {{ test.title }}
-                </a>
-            {% endfor %}
-        </div>
-    {% endif %}
     <div class="comments-container" style="margin:50px 300px;">
         <h2>Комментарии</h2>
         {% if comments %}

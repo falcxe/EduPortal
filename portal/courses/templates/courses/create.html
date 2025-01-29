@@ -17,17 +17,6 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-
-                <!-- Добавляем чекбокс для теста -->
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="has_test" name="has_test"> Добавить тест
-                    </label>
-                </div>
-
-                <!-- Контейнер для формы теста -->
-                {% include 'courses/test_form.html' %}
-
                 {% if form.errors %}
                 <div class="alert alert-danger">
                     <ul>
@@ -53,9 +42,4 @@
             </form>
         </div>
     </div>
-{% endblock %}
-
-{% block extra_js %}
-<script src="{% static 'main/js/test_form.js' %}"></script>
-<script src="{% static 'main/js/create_course.js' %}"></script>
 {% endblock %}
