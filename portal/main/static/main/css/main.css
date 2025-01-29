@@ -125,6 +125,14 @@ main {
     text-align: left;
 }
 
+/* Добавляем стили для уменьшения размера чекбокса */
+.form-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    transform: scale(0.8); /* Уменьшаем размер чекбокса */
+    margin-right: 10px; /* Добавляем отступ справа */
+}
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
@@ -657,4 +665,67 @@ main {
     text-align: center;
     padding: 8  px;
     width: 150px;
+}
+
+.test-form {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.test-form h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.question-block {
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.answer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.answer input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.answer input[type="radio"] {
+    margin: 0;
+}
+
+.test-section {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.test-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.test-button:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
 }
