@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.urls import reverse,reverse_lazy
+from django.urls import reverse
 from django.db import models
 from django.conf import settings
 
@@ -12,8 +12,8 @@ class Course(models.Model):
         ('Биология', 'Биология'),
         ('География', 'География'),
         ('Геометрия', 'Геометрия'),
-        ('Информатика', 'Информатика'),
         ('История', 'История'),
+        ('Информатика', 'Информатика'),
         ('Литература', 'Литература'),
         ('Математика', 'Математика'),
         ('Обществознание', 'Обществознание'),
