@@ -31,6 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*', '.railway.app']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://earnest-stillness-deployment.up.railway.app',
+]
 
 # Application definition
 
