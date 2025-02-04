@@ -563,10 +563,13 @@ main {
 
 
 .course-materials {
+    position: relative;
     width: 40%;
     height: 300px;
-    margin: 50px 5px;
-    margin-left: 800px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: 10%;
     padding: 10px;
     background-color: rgba(184, 243, 230, 0.397);
     border-radius: 10px;
@@ -695,6 +698,11 @@ main {
     border-radius: 10px;
     margin-bottom: 15px;
 }
+
+.course-card-index p{
+    font-size:0.5em;
+}
+
 .hero-image img {
     border-radius: 15px;
     height: 300px;
