@@ -20,7 +20,6 @@
                             <img src="{% static 'main/img/default_course_image.jpg' %}" alt="Default Course Image">
                         {% endif %}
                         <h3>{{ course.name }}</h3>
-                        <p>{{ course.description }}</p>
                         <a href="{% url 'course-detail' course.id %}" class="btn btn-dark">Подробнее</a>
                     </div>
                 {% endfor %}
@@ -36,7 +35,6 @@
                             <img src="{% static 'main/img/default_course_image.jpg' %}" alt="Default Course Image">
                         {% endif %}
                         <h3>{{ course.name }}</h3>
-                        <p>{{ course.description }}</p>
                         <a href="{% url 'course-detail' course.id %}" class="btn btn-dark">Подробнее</a>
                     </div>
                 {% endfor %}

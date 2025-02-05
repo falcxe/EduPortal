@@ -26,7 +26,7 @@ header {
     font-size: 1.9em;
     margin: 10px;
     text-decoration: none;
-    color: #bbc4c8;
+    color: #ffffff;
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -318,6 +318,7 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     height: auto;
+    max-height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -344,7 +345,8 @@ main {
 .course-card h3 {
     margin-top: 10px;
     margin-bottom: 30px;
-    font-size: 1.2em;
+    font-size: 1.4em;
+    font-weight: bold;
     color: #333;
 }
 
@@ -682,13 +684,13 @@ main {
 
 .course-card-index{
     width: 30%;
-    margin: 10px 25px;
-    padding: 25px;
+    margin: 10px 20px;
+    padding: 20px;
+    height: 380px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -699,8 +701,14 @@ main {
     margin-bottom: 15px;
 }
 
+.course-card-index h3{
+    font-size: 0.7em;
+}
+
 .course-card-index p{
     font-size:0.5em;
+    text-align: left;
+    margin-top: 10px;
 }
 
 .hero-image img {

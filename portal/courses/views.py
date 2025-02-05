@@ -1,5 +1,5 @@
 from django.db import models  # Добавьте этот импорт
-from .models import Course, CourseMaterial, Comment, Test, Question, Answer
+from .models import Course, CourseMaterial, Comment
 from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
