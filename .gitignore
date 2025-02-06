@@ -7,3 +7,4 @@ portal/main/__pycache__
 portal/users/__pycache__
 portal/courses/__pycache__
 *.pyc
+media

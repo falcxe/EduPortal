@@ -51,7 +51,7 @@ class Course(models.Model):
 
 class CourseMaterial(models.Model):
     course = models.ForeignKey(Course, related_name='materials', on_delete=models.CASCADE)
-    file = models.FileField(upload_to='course_materials/', blank=False, verbose_name="Файл")
+    file = models.FileField(upload_to='course_materials/', verbose_name="Файл")
 
     def __str__(self):
         return self.file.name
