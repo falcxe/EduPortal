@@ -30,7 +30,9 @@
         <h1><strong>{{course.name}}</strong></h1>
         <br></br>
         <h2>{{ course.description }}</h2>
-        <p>{{ course.full_text|linebreaks }}</p>
+        <div>
+            {{ course.full_text|linebreaksbr }}
+        </div>
     </article>
     {% if course.materials.exists %}
         <div class="course-materials-rating-container">
