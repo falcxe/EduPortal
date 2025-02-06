@@ -574,7 +574,7 @@ main {
     margin-left: auto;
     margin-right: 10%;
     padding: 10px;
-    background-color: rgba(184, 243, 230, 0.397);
+    background-color: rgba(146, 146, 146, 0.123);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -611,7 +611,7 @@ main {
     margin-left: 100px;
     height: 300px;
     padding: 30px;
-    background-color: rgba(184, 243, 230, 0.397);
+    background-color: rgba(146, 146, 146, 0.123);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
