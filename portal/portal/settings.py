@@ -32,7 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*', '.railway.app']
 
 CSRF_TRUSTED_ORIGINS = [
-    'eduportal.up.railway.app',  # Добавьте ваш домен
+    'https://earnest-stillness-deployment.up.railway.app',  # Добавьте ваш домен
 ]
 # Application definition
 
