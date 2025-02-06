@@ -33,7 +33,7 @@
                 {% endif %}
                 <div class="form-group">
                     <label for="id_materials">Материалы курса</label>
-                    <input type="file" name="materials" multiple id="id_materials" class="form-control">
+                    <input type="file" name="materials" multiple id="id_materials" class="form-control" required>
                 </div>
                 <button class="btn btn-primary" type="submit">
                     <i class="fa-solid fa-{% if course %}save{% else %}plus{% endif %}"></i>
