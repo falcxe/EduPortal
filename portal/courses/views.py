@@ -113,7 +113,7 @@ def catalog(request):
         for tag in tag_list:
             courses = courses.filter(tags__icontains=tag.strip())
 
-    paginator = Paginator(courses, 15)  # Показывать 10 курсов на странице
+    paginator = Paginator(courses, 10)  # Показывать 10 курсов на странице
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
