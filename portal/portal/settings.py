@@ -30,7 +30,7 @@ LOGIN_URL = 'login'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://eduportal-d2gf.onrender.com']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://eduportal-d2gf.onrender.com',
