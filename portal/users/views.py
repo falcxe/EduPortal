@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.mail import mail_admins, send_mail
+from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from .forms import UserLoginForm, UserRegisterForm, TeacherApplicationForm
@@ -9,7 +9,6 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.utils.html import strip_tags
 from django.contrib.auth.password_validation import validate_password
-from social_core.exceptions import AuthCanceled
 
 User = get_user_model()
 
@@ -119,10 +118,3 @@ def logout(request):
 def auth_error(request):
     error_message = request.session.pop('social_auth_error', None)
     return render(request, 'users/auth_error.html', {'error': error_message})
-
-def auth_complete(request, backend, *args, **kwargs):
-    try:
-        return do_complete(request, backend, *args, **kwargs)
-    except AuthCanceled as e:
-        request.session['social_auth_error'] = str(e)
-        return redirect('auth-error')

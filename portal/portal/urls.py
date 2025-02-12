@@ -6,7 +6,7 @@ from users.views import auth_error
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),  # Регистрация приложения main
+    path('', include('main.urls')),
     path('user/', include('users.urls')),
     path('catalog/', include('courses.urls')),
     path('social-auth/', include('social_django.urls', namespace='social')),

@@ -1,4 +1,3 @@
-from django.db import models  # Добавьте этот импорт
 from .models import Course, CourseMaterial, Comment
 from django.http import HttpResponse
 from django.views.generic import DetailView
@@ -10,9 +9,7 @@ from django.core.paginator import Paginator
 import zipfile
 import os
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import CourseForm, CourseMaterialForm, CommentForm
-from django.contrib.auth.models import User
-from django.contrib.auth.mixins import UserPassesTestMixin
+from .forms import CourseForm, CommentForm
 from django.views.generic.edit import DeleteView
 from django.http import JsonResponse
 from django.views import View
@@ -91,7 +88,7 @@ def create(request):
                             is_correct=a_data['is_correct']
                         )
 
-            return redirect('course-detail', pk=course.pk)  # Изменено с 'catalog' на 'course-detail'
+            return redirect('course-detail', pk=course.pk)
     else:
         form = CourseForm()
 
@@ -113,7 +110,7 @@ def catalog(request):
         for tag in tag_list:
             courses = courses.filter(tags__icontains=tag.strip())
 
-    paginator = Paginator(courses, 10)  # Показывать 10 курсов на странице
+    paginator = Paginator(courses, 9)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -231,45 +228,3 @@ def add_reply(request, pk):
             text=request.POST.get('text')
         )
         return redirect('course-detail', pk=parent_comment.course.pk)
-
-@login_required
-def create_test(request, course_id):
-    if request.method == 'POST':
-        test = Test.objects.create(
-            course_id=course_id,
-            title=request.POST.get('test_title')
-        )
-
-        # Обработка вопросов и ответов
-        questions_data = {}
-        for key, value in request.POST.items():
-            if key.startswith('question_'):
-                question_id = key.split('_')[1]
-                if question_id not in questions_data:
-                    questions_data[question_id] = {'text': value, 'answers': []}
-
-            elif key.startswith('answer_'):
-                parts = key.split('_')
-                if len(parts) == 3:
-                    _, question_id, answer_id = parts
-                    correct = request.POST.get(f'correct_answer_{question_id}') == answer_id
-                    questions_data[question_id]['answers'].append({
-                        'text': value,
-                        'is_correct': correct
-                    })
-
-        # Сохранение вопросов и ответов
-        for q_data in questions_data.values():
-            question = Question.objects.create(
-                test=test,
-                text=q_data['text']
-            )
-            for a_data in q_data['answers']:
-                Answer.objects.create(
-                    question=question,
-                    text=a_data['text'],
-                    is_correct=a_data['is_correct']
-                )
-
-        return JsonResponse({'status': 'success'})
-    return JsonResponse({'status': 'error'}, status=400)
