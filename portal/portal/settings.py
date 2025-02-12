@@ -68,11 +68,16 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SOCIAL_AUTH_YANDEX_OAUTH2_KEY = '3bbb8102b0724d3eb4f569bf671ccc1e'
-SOCIAL_AUTH_YANDEX_OAUTH2_SECRET = 'c473289d69b14508a26cafcff29f4f18'
+SOCIAL_AUTH_YANDEX_OAUTH2_SECRET = '017b177386d44e568e7f266e9fecc181'
+SOCIAL_AUTH_YANDEX_OAUTH2_API_URL = 'https://oauth.yandex.ru'
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
-SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/'
-SOCIAL_AUTH_YANDEX_OAUTH2_SCOPE = ['login:info', 'login:email']
+
+OCIAL_AUTH_REDIRECT_IS_HTTPS = True
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'https://eduportal-d2gf.onrender.com/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = 'https://eduportal-d2gf.onrender.com/login/'
+
+SOCIAL_AUTH_YANDEX_OAUTH2_SCOPE = ['login:email', 'login:info']
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',
