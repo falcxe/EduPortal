@@ -112,10 +112,10 @@ WSGI_APPLICATION = 'portal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eduportal_db',
-        'USER': 'eduportal_db_user',
-        'PASSWORD': '8pqduwjUNXHzKtRxXqh2YPbOzGGrNz03',
-        'HOST': 'dpg-cumavkin91rc739toqeg-a',
+        'NAME': 'eduportal',
+        'USER': 'eduportal',
+        'PASSWORD': '123',
+        'HOST': '82.202.136.95',
         'PORT': '5432',
     }
 }
