@@ -114,7 +114,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'eduportal_db',
         'USER': 'eduportal_db_user',
-        'PASSWORD': '123',
+        'PASSWORD': '8pqduwjUNXHzKtRxXqh2YPbOzGGrNz03',
         'HOST': 'dpg-cumavkin91rc739toqeg-a',
         'PORT': '5432',
     }
