@@ -126,12 +126,12 @@ main {
     text-align: left;
 }
 
-/* Добавляем стили для уменьшения размера чекбокса */
+
 .form-group input[type="checkbox"] {
     width: 20px;
     height: 20px;
-    transform: scale(0.8); /* Уменьшаем размер чекбокса */
-    margin-right: 10px; /* Добавляем отступ справа */
+    transform: scale(0.8);
+    margin-right: 10px;
 }
 
 .form-group label {
@@ -429,7 +429,7 @@ main {
 }
 
 .creating-form button {
-    width: 80%; /* Кнопка тоже занимает всю ширину */ /* Ограничиваем максимальную ширину */
+    width: 80%;
     padding: 10px;
     background-color: #333;
     color: #fff;
@@ -454,8 +454,8 @@ main {
 
 .course-image-container img {
     width: 120%;
-    height: auto; /* Автоматически подстраиваем высоту изображения */
-    border-radius: 10px; /* Скругляем углы изображения */
+    height: auto;
+    border-radius: 10px;
 }
 .course-info-container {
     position: absolute;
@@ -519,22 +519,22 @@ main {
     display: flex;
     list-style: none;
     padding: 0;
-    gap: 0; /* Убираем промежуток между элементами */
+    gap: 0;
 }
 
 .pagination .step-links a,
 .pagination .step-links span {
-    padding: 5px 10px; /* Уменьшаем размер отступов */
+    padding: 5px 10px;
     background-color: #333;
     color: #fff;
-    border-radius: 5px; /* Уменьшаем радиус закругления */
+    border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    border: 1px solid #333; /* Добавляем границу */
-    margin: 0 2px; /* Добавляем небольшой отступ между элементами */
+    border: 1px solid #333;
+    margin: 0 2px;
     display: flex;
-    align-items: center; /* Выравниваем стрелки по вертикали */
-    justify-content: center; /* Выравниваем стрелки по горизонтали */
+    align-items: center;
+    justify-content: center;
 }
 
 .pagination .step-links a:first-child,
@@ -560,8 +560,8 @@ main {
 
 .pagination .page-numbers {
     display: flex;
-    gap: 0; /* Убираем промежуток между элементами */
-    margin: 0 10px; /* Добавляем отступы слева и справа */
+    gap: 0;
+    margin: 0 10px;
 }
 
 
