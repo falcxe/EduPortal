@@ -110,10 +110,16 @@ WSGI_APPLICATION = 'portal.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'eduportal_db',
+        'USER': 'eduportal_db_user',
+        'PASSWORD': '123',
+        'HOST': 'dpg-cumavkin91rc739toqeg-a',
+        'PORT': '5432',
+    }
 }
+
 
 
 # Password validation
