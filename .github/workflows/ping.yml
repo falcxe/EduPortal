@@ -1,0 +1,10 @@
+name: Ping Service
+on:
+  schedule:
+    - cron: '*/14 * * * *'  # Каждые 14 минут
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Ping
+      run: curl https://eduportal-d2gf.onrender.com/
