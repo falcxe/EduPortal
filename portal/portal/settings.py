@@ -28,9 +28,9 @@ SECRET_KEY = 'django-insecure-2!-j-yx1umf0)=4hu*hcoqa@vj@910m_lq76#wkwayso67(6%a
 LOGIN_URL = 'login'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['eduportal-d2gf.onrender.com']
+ALLOWED_HOSTS = ['eduportal-d2gf.onrender.com', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://eduportal-d2gf.onrender.com',
@@ -126,6 +126,13 @@ DATABASES = {
 }
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
