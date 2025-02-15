@@ -13,9 +13,9 @@ EduPortal - современный сайт с курсами, который п
    ```
    git clone https://github.com/falcxe/EduPortal.git
    ```
-3. Затем введите:
+3. Затем перейдите в корневую папку проекта:
    ```
-   cd portal
+   cd path/to/EduPortal/portal
    ```
 4. Установить зависимости:
    ```
