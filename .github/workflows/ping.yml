@@ -1,7 +1,7 @@
 name: Ping Service
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Каждые 5 минут
+    - cron: '* * * * *'
 jobs:
   ping:
     runs-on: ubuntu-latest
