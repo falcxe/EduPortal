@@ -1,6 +1,7 @@
 portal/.vscode
 portal/.idea
 .venv
+.vscode
 idea
 portal/portal/__pycache__
 portal/main/__pycache__
