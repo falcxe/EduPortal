@@ -13,14 +13,13 @@
             <h1><strong>Рекомендуемые курсы</strong> <i class="fa-solid fa-arrow-down" style="font-size: 0.75em;"></i></h1>
             <div class="course-cards-index">
                 {% for course in recommended_courses %}
-                    <div class="course-card-index">
+                    <div class="course-card-index" onclick="window.location.href='{% url 'course-detail' course.id %}'">
                         {% if course.image %}
                             <img src="{{ course.image.url }}" alt="Course Image">
                         {% else %}
                             <img src="{% static 'main/img/default_course_image.jpg' %}" alt="Default Course Image">
                         {% endif %}
                         <h3>{{ course.name }}</h3>
-                        <a href="{% url 'course-detail' course.id %}" class="btn btn-dark">Подробнее</a>
                     </div>
                 {% endfor %}
             </div>
@@ -28,14 +27,13 @@
             <h1><strong>Новые курсы</strong> <i class="fa-solid fa-arrow-down" style="font-size: 0.75em;"></i></h1>
             <div class="course-cards-index">
                 {% for course in new_courses %}
-                    <div class="course-card-index">
+                    <div class="course-card-index" onclick="window.location.href='{% url 'course-detail' course.id %}'">
                         {% if course.image %}
                             <img src="{{ course.image.url }}" alt="Course Image">
                         {% else %}
                             <img src="{% static 'main/img/default_course_image.jpg' %}" alt="Default Course Image">
                         {% endif %}
                         <h3>{{ course.name }}</h3>
-                        <a href="{% url 'course-detail' course.id %}" class="btn btn-dark">Подробнее</a>
                     </div>
                 {% endfor %}
             </div>

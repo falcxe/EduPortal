@@ -57,7 +57,7 @@
             </aside>
             <div class="course-cards">
                 {% for course in page_obj %}
-                <div class="course-card">
+                <div class="course-card" onclick="window.location.href='{% url 'course-detail' course.id %}'">
                     {% if course.image %}
                     <img src="{{ course.image.url }}" alt="Course Image">
                     {% else %}
@@ -65,7 +65,6 @@
                     {% endif %}
                     <h3>{{ course.name }}</h3>
                     <p>{{ course.description|truncatechars:70 }}</p>
-                    <a href="{% url 'course-detail' course.id %}" class="btn btn-dark">Подробнее</a>
                 </div>
                 {% endfor %}
             </div>

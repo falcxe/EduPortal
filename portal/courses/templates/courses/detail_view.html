@@ -160,9 +160,11 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative;
     margin-bottom: 20px;
     padding: 15px;
-    border-radius: 8px;
-    background-color: rgba(184, 243, 230, 0.397);
+    border-radius: 10px;
+    background-color: #f4f4f4;
     animation-fill-mode: forwards;
+    border-left: 4px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .comment-header {
@@ -170,6 +172,14 @@ document.addEventListener('DOMContentLoaded', function() {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+.comment-header p {
+    margin: 0;
+    color: #333;
+    font-weight: 500;
 }
 
 .delete-comment {
@@ -183,18 +193,39 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .reply {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
     margin: 10px 0;
     padding: 10px;
     border-radius: 8px;
+    border-left: 3px solid #555;
+    margin-left: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.reply-button {
+    color: #333;
+    text-decoration: none;
+    margin-top: 5px;
+    display: inline-block;
+    font-weight: 500;
+    transition: all 0.2s;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.reply-button:hover {
+    background-color: #333;
+    color: white;
+    text-decoration: none;
 }
 
 .reply-form {
     margin: 10px 0;
     width: 100%;
     padding: 10px;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     border-radius: 8px;
+    border: 1px solid #e0e0e0;
 }
 
 .no-comments {
