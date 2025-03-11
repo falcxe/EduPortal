@@ -322,13 +322,13 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
 }
 
 .course-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .course-card img {
@@ -336,6 +336,11 @@ main {
     height: auto;
     border-radius: 10px;
     max-height: 180px;
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover img {
+    transform: scale(1.02);
 }
 
 .creating-form label {
@@ -745,18 +750,23 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
 }
 
 .course-card-index:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .course-card-index img{
     border-radius: 10px;
     margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.course-card-index:hover img {
+    transform: scale(1.02);
 }
 
 .course-card-index h3{

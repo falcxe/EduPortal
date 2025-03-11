@@ -10,7 +10,7 @@
         </div>
 
         <div class="main-content">
-            <h1><strong>Рекомендуемые курсы</strong> <i class="fa-solid fa-arrow-down" style="font-size: 0.75em;"></i></h1>
+            <h1><strong>Рекомендуемые курсы</strong><a href="{% url 'catalog' %}" style="text-decoration: none; color: inherit;" class="arrow-link"> <i class="fa-solid fa-arrow-right" style="font-size: 0.75em; transition: transform 0.3s ease, color 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'; this.style.color='#007bff';" onmouseout="this.style.transform='translateX(0)'; this.style.color='inherit';"></i></a></h1>
             <div class="course-cards-index">
                 {% for course in recommended_courses %}
                     <div class="course-card-index" onclick="window.location.href='{% url 'course-detail' course.id %}'">
@@ -24,7 +24,7 @@
                 {% endfor %}
             </div>
 
-            <h1><strong>Новые курсы</strong> <i class="fa-solid fa-arrow-down" style="font-size: 0.75em;"></i></h1>
+            <h1><strong>Новые курсы</strong><a href="{% url 'catalog' %}" style="text-decoration: none; color: inherit;" class="arrow-link"> <i class="fa-solid fa-arrow-right" style="font-size: 0.75em; transition: transform 0.3s ease, color 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'; this.style.color='#007bff';" onmouseout="this.style.transform='translateX(0)'; this.style.color='inherit';"></i></a></h1>
             <div class="course-cards-index">
                 {% for course in new_courses %}
                     <div class="course-card-index" onclick="window.location.href='{% url 'course-detail' course.id %}'">

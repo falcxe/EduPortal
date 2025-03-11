@@ -52,42 +52,6 @@ def create(request):
             for file in files:
                 CourseMaterial.objects.create(course=course, file=file)
 
-            # Обработка теста, если он был добавлен
-            if request.POST.get('has_test'):
-                test = Test.objects.create(
-                    course=course,
-                    title=request.POST.get('test_title')
-                )
-
-                # Обработка вопросов и ответов
-                questions_data = {}
-                for key, value in request.POST.items():
-                    if key.startswith('question_'):
-                        question_id = key.split('_')[1]
-                        if question_id not in questions_data:
-                            questions_data[question_id] = {'text': value, 'answers': []}
-
-                    elif key.startswith('answer_'):
-                        _, question_id, answer_id = key.split('_')
-                        correct = request.POST.get(f'correct_{question_id}') == answer_id
-                        questions_data[question_id]['answers'].append({
-                            'text': value,
-                            'is_correct': correct
-                        })
-
-                # Сохранение вопросов и ответов
-                for q_data in questions_data.values():
-                    question = Question.objects.create(
-                        test=test,
-                        text=q_data['text']
-                    )
-                    for a_data in q_data['answers']:
-                        Answer.objects.create(
-                            question=question,
-                            text=a_data['text'],
-                            is_correct=a_data['is_correct']
-                        )
-
             return redirect('course-detail', pk=course.pk)
     else:
         form = CourseForm()
