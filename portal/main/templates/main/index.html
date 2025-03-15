@@ -5,12 +5,100 @@
 
 {% block content %}
     <main>
-        <div class="hero-image">
-            <img src="{% static 'main/img/hero.jpg' %}" alt="Education Hero Image">
+        <div class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Образование для <span class="highlight">будущего</span></h1>
+                <p>Откройте для себя новые знания с нашими курсами и развивайте свои навыки онлайн</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Курсов</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Преподавателей</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Доступ</span>
+                    </div>
+                </div>
+                <a href="{% url 'catalog' %}" class="hero-btn">Начать обучение</a>
+            </div>
+            <div class="hero-image">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 800" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" class="gradient-primary-start" />
+                            <stop offset="50%" class="gradient-primary-middle" />
+                            <stop offset="100%" class="gradient-primary-end" />
+                        </linearGradient>
+                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" class="gradient-secondary-start" />
+                            <stop offset="100%" class="gradient-secondary-end" />
+                        </linearGradient>
+                        <pattern id="smallGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                            <circle cx="15" cy="15" r="1" fill="#ffffff" opacity="0.3"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#gradient1)" />
+                    <rect width="100%" height="100%" fill="url(#smallGrid)" />
+                    <circle cx="25%" cy="30%" r="350" fill="url(#gradient2)" />
+                    <circle cx="75%" cy="70%" r="300" fill="url(#gradient2)" opacity="0.7" />
+
+                    <!-- Добавляем больше случайных светящихся точек равномерно по всему фону -->
+                    <g fill="#ffffff">
+                        <circle cx="5%" cy="10%" r="2" opacity="0.7" class="animate-dot" />
+                        <circle cx="10%" cy="20%" r="3" opacity="0.6" class="animate-dot" />
+                        <circle cx="15%" cy="15%" r="2.5" opacity="0.5" class="animate-dot" />
+                        <circle cx="20%" cy="30%" r="3" opacity="0.7" class="animate-dot" />
+                        <circle cx="25%" cy="25%" r="2" opacity="0.6" class="animate-dot" />
+                        <circle cx="30%" cy="5%" r="3" opacity="0.5" class="animate-dot" />
+                        <circle cx="35%" cy="40%" r="2" opacity="0.7" class="animate-dot" />
+                        <circle cx="40%" cy="35%" r="3" opacity="0.6" class="animate-dot" />
+                        <circle cx="45%" cy="50%" r="2.5" opacity="0.5" class="animate-dot" />
+                        <circle cx="50%" cy="45%" r="3" opacity="0.7" class="animate-dot" />
+                        <circle cx="55%" cy="60%" r="2" opacity="0.6" class="animate-dot" />
+                        <circle cx="60%" cy="55%" r="3" opacity="0.5" class="animate-dot" />
+                        <circle cx="65%" cy="70%" r="2" opacity="0.7" class="animate-dot" />
+                        <circle cx="70%" cy="65%" r="3" opacity="0.6" class="animate-dot" />
+                        <circle cx="75%" cy="80%" r="2.5" opacity="0.5" class="animate-dot" />
+                        <circle cx="80%" cy="75%" r="3" opacity="0.7" class="animate-dot" />
+                        <circle cx="85%" cy="90%" r="2" opacity="0.6" class="animate-dot" />
+                        <circle cx="90%" cy="85%" r="3" opacity="0.5" class="animate-dot" />
+                        <circle cx="95%" cy="95%" r="2" opacity="0.7" class="animate-dot" />
+
+                        <circle cx="7%" cy="85%" r="3" opacity="0.5" class="animate-dot" />
+                        <circle cx="12%" cy="75%" r="2" opacity="0.6" class="animate-dot" />
+                        <circle cx="18%" cy="65%" r="3" opacity="0.7" class="animate-dot" />
+                        <circle cx="23%" cy="55%" r="2.5" opacity="0.5" class="animate-dot" />
+                        <circle cx="28%" cy="45%" r="3" opacity="0.6" class="animate-dot" />
+                        <circle cx="33%" cy="35%" r="2" opacity="0.7" class="animate-dot" />
+                        <circle cx="38%" cy="25%" r="3" opacity="0.5" class="animate-dot" />
+                        <circle cx="43%" cy="15%" r="2" opacity="0.6" class="animate-dot" />
+                        <circle cx="48%" cy="5%" r="3" opacity="0.7" class="animate-dot" />
+                        <circle cx="53%" cy="95%" r="2.5" opacity="0.5" class="animate-dot" />
+                        <circle cx="58%" cy="85%" r="3" opacity="0.6" class="animate-dot" />
+                        <circle cx="63%" cy="75%" r="2" opacity="0.7" class="animate-dot" />
+                        <circle cx="68%" cy="65%" r="3" opacity="0.5" class="animate-dot" />
+                        <circle cx="73%" cy="55%" r="2" opacity="0.6" class="animate-dot" />
+                        <circle cx="78%" cy="45%" r="3" opacity="0.7" class="animate-dot" />
+                        <circle cx="83%" cy="35%" r="2.5" opacity="0.5" class="animate-dot" />
+                        <circle cx="88%" cy="25%" r="3" opacity="0.6" class="animate-dot" />
+                        <circle cx="93%" cy="15%" r="2" opacity="0.7" class="animate-dot" />
+                        <circle cx="98%" cy="5%" r="3" opacity="0.5" class="animate-dot" />
+                    </g>
+                </svg>
+            </div>
         </div>
 
         <div class="main-content">
-            <h1><strong>Рекомендуемые курсы</strong><a href="{% url 'catalog' %}" style="text-decoration: none; color: inherit;" class="arrow-link"> <i class="fa-solid fa-arrow-right" style="font-size: 0.75em; transition: transform 0.3s ease, color 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'; this.style.color='#007bff';" onmouseout="this.style.transform='translateX(0)'; this.style.color='inherit';"></i></a></h1>
+            <div class="section-header">
+                <a href="{% url 'catalog' %}" class="no-text-decoration">
+                    <h2>Рекомендуемые курсы</h2>
+                </a>
+            </div>
             <div class="course-cards-index">
                 {% for course in recommended_courses %}
                     <div class="course-card-index" onclick="window.location.href='{% url 'course-detail' course.id %}'">
@@ -24,7 +112,11 @@
                 {% endfor %}
             </div>
 
-            <h1><strong>Новые курсы</strong><a href="{% url 'catalog' %}" style="text-decoration: none; color: inherit;" class="arrow-link"> <i class="fa-solid fa-arrow-right" style="font-size: 0.75em; transition: transform 0.3s ease, color 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'; this.style.color='#007bff';" onmouseout="this.style.transform='translateX(0)'; this.style.color='inherit';"></i></a></h1>
+            <div class="section-header">
+                <a href="{% url 'catalog' %}" class="no-text-decoration">
+                    <h2>Новые курсы</h2>
+                </a>
+            </div>
             <div class="course-cards-index">
                 {% for course in new_courses %}
                     <div class="course-card-index" onclick="window.location.href='{% url 'course-detail' course.id %}'">

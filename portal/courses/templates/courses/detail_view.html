@@ -26,7 +26,7 @@
             {% endif %}
         </div>
     </div>
-    <article class="course-text-container" style="text-align: justify; margin-top:50px !important;">
+    <article class="course-text-container justify-text">
         <h1><strong>{{course.name}}</strong></h1>
         <br></br>
         <h2>{{ course.description }}</h2>
@@ -37,19 +37,30 @@
     {% if course.materials.exists %}
         <div class="course-materials-rating-container">
             <div class="course-materials">
-                <h2>Материалы по теме</h2>
-                {% for material in course.materials.all %}
-                    <p>{{ material.file.name|slice:"17:" }}</p>
-                {% endfor %}
-                <a href="{% url 'download-all-materials' course.id %}" class="btn btn-dark">Скачать</a>
+                <h2 class="white-text">Материалы по теме</h2>
+                <div class="materials-list">
+                    {% for material in course.materials.all %}
+                        <div class="material-item">
+                            <i class="fas fa-file-alt"></i>
+                            <p class="white-text">{{ material.file.name|slice:"18:" }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'download-all-materials' course.id %}" class="btn btn-dark">Скачать все материалы</a>
             </div>
             <div class="rating-container">
-                <h2>Средний рейтинг: {{ course.average_rating }}</h2>
-                <p>Количество оценок: {{ course.rating_count }}</p>
+                <h2 class="white-text">Средний рейтинг</h2>
+                <div class="rating-content">
+                    <div class="rating-value">
+                        <i class="fas fa-star"></i>
+                        <span class="white-text">{{ course.average_rating }}</span>
+                    </div>
+                    <p class="white-text">Количество оценок: {{ course.rating_count }}</p>
+                </div>
             </div>
         </div>
     {% endif %}
-    <div class="comments-container" style="margin:50px 300px;">
+    <div class="comments-container">
         <h2>Комментарии</h2>
         {% if comments %}
             {% for comment in comments %}
@@ -82,7 +93,7 @@
                         </div>
                     {% endif %}
                     {% for reply in comment.replies.all %}
-                        <div class="reply" style="margin-left: 40px;">
+                        <div class="reply">
                             <div class="comment-header">
                                 <p><i class="fas fa-user-circle"></i> <strong>{{ reply.user.username }}</strong></p>
                                 {% if user.is_staff or user == course.author %}
@@ -149,94 +160,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
-<style>
-@keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity: 0;}
-}
-
-.comment {
-    position: relative;
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #f4f4f4;
-    animation-fill-mode: forwards;
-    border-left: 4px solid #333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.comment-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 8px;
-}
-
-.comment-header p {
-    margin: 0;
-    color: #333;
-    font-weight: 500;
-}
-
-.delete-comment {
-    color: #dc3545;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.delete-comment:hover {
-    color: #c82333;
-}
-
-.reply {
-    background-color: #ffffff;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 8px;
-    border-left: 3px solid #555;
-    margin-left: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.reply-button {
-    color: #333;
-    text-decoration: none;
-    margin-top: 5px;
-    display: inline-block;
-    font-weight: 500;
-    transition: all 0.2s;
-    padding: 3px 8px;
-    border-radius: 4px;
-}
-
-.reply-button:hover {
-    background-color: #333;
-    color: white;
-    text-decoration: none;
-}
-
-.reply-form {
-    margin: 10px 0;
-    width: 100%;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
-}
-
-.no-comments {
-    text-align: center;
-    color: #666;
-    font-style: italic;
-    margin: 20px 0;
-}
-
-.reply-form textarea {
-    width: 850px;
-}
-</style>
 {% endblock %}

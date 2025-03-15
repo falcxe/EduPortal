@@ -5,17 +5,20 @@
 
 {% block content %}
     <main>
-        {% if user.is_teacher or user.is_staff %}
-            <a href="{% url 'create' %}" class="btn btn-dark add" id="add_course"><i class="fa-solid fa-plus"></i> Добавить курс</a>
-        {% endif %}
         <div class="catalog-div">
             <aside class="filter-container">
-                <h3>Фильтры</h3>
+                {% if user.is_teacher or user.is_staff %}
+                    <a href="{% url 'create' %}" class="btn btn-primary add" id="add_course">
+                        <i class="fa-solid fa-plus"></i> Добавить курс
+                    </a>
+                {% endif %}
+
+                <h3 class="filter-title">Фильтры</h3>
                 <form method="get" action="{% url 'catalog' %}">
                     <div class="form-group">
                         <label for="grade">Класс</label>
                         <select id="grade" name="grade" class="form-control">
-                            <option value="">Не указано</option>
+                            <option value="">Все классы</option>
                             <option value="1" {% if selected_grade == "1" %}selected{% endif %}>1</option>
                             <option value="2" {% if selected_grade == "2" %}selected{% endif %}>2</option>
                             <option value="3" {% if selected_grade == "3" %}selected{% endif %}>3</option>
@@ -32,7 +35,7 @@
                     <div class="form-group">
                         <label for="subject">Предмет</label>
                         <select id="subject" name="subject" class="form-control">
-                            <option value="">Не указано</option>
+                            <option value="">Все предметы</option>
                             <option value="Алгебра" {% if selected_subject == "Алгебра" %}selected{% endif %}>Алгебра</option>
                             <option value="Английский язык" {% if selected_subject == "Английский язык" %}selected{% endif %}>Английский язык</option>
                             <option value="Биология" {% if selected_subject == "Биология" %}selected{% endif %}>Биология</option>
@@ -52,10 +55,17 @@
                         <label for="tags">Тэги</label>
                         <input type="text" id="tags" name="tags" class="form-control" placeholder="Введите тэги через запятую" value="{{ selected_tags|default:"" }}">
                     </div>
-                    <button type="submit" class="btn btn-dark">Применить</button>
+                    <button type="submit" class="btn btn-primary filter-button">
+                        <i class="fas fa-filter"></i> Применить
+                    </button>
+                    <a href="{% url 'catalog' %}" class="btn btn-secondary filter-reset">
+                        <i class="fas fa-undo"></i> Сбросить
+                    </a>
                 </form>
             </aside>
+
             <div class="course-cards">
+                {% if page_obj %}
                 {% for course in page_obj %}
                 <div class="course-card" onclick="window.location.href='{% url 'course-detail' course.id %}'">
                     {% if course.image %}
@@ -67,31 +77,37 @@
                     <p>{{ course.description|truncatechars:70 }}</p>
                 </div>
                 {% endfor %}
+                {% else %}
+                    <div class="no-courses">
+                        <p>Курсы не найдены. Попробуйте изменить параметры фильтрации.</p>
+                    </div>
+                {% endif %}
             </div>
             </div>
+
             <div class="pagination">
                 <span class="step-links">
                     {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-dark rounded">&laquo;</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary rounded">&laquo;</a>
                     {% endif %}
 
                     <span class="page-numbers">
                         {% for num in page_obj.paginator.page_range %}
                         {% if page_obj.number == num %}
-                        <span class="current btn btn-dark rounded">{{ num }}</span>
+                            <span class="current btn btn-primary rounded">{{ num }}</span>
                         {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <a href="?page={{ num }}" class="btn btn-dark rounded">{{ num }}</a>
+                            <a href="?page={{ num }}" class="btn btn-light rounded">{{ num }}</a>
                         {% endif %}
                         {% endfor %}
                     </span>
 
                     {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
-                    <span>...</span>
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-dark rounded">{{ page_obj.paginator.num_pages }}</a>
+                    <span class="dots">...</span>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-light rounded">{{ page_obj.paginator.num_pages }}</a>
                     {% endif %}
 
                     {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-dark rounded">&raquo;</a>
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary rounded">&raquo;</a>
                     {% endif %}
                 </span>
             </div>
